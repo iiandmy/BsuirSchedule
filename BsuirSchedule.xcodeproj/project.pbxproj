@@ -131,7 +131,6 @@
 				9AB80AA12812138B003640C8 /* Network */,
 				9A4D45522814A60D00C383C8 /* SupportingFiles */,
 				9A4D45542814A63500C383C8 /* Resources */,
-				9A23027927EE89FB00803D7C /* LaunchScreen.storyboard */,
 				9A4D45532814A62B00C383C8 /* Storage */,
 			);
 			path = BsuirSchedule;
@@ -185,6 +184,7 @@
 		9A4D45542814A63500C383C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9A23027927EE89FB00803D7C /* LaunchScreen.storyboard */,
 				9A23027727EE89FB00803D7C /* Assets.xcassets */,
 			);
 			path = Resources;
