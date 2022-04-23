@@ -9,7 +9,7 @@ import Foundation
 
 struct Pair: Codable {
     let weekNumber: [Int]?
-    let studentGroup: String?
+    let studentGroup: [String]?
     let numSubgroup: Int?
     let auditory: [String]?
     let startLessonTime: String?
@@ -18,6 +18,6 @@ struct Pair: Codable {
     let subjectFullName: String?
     let note: String?
     let lessonType: String?
-    let employee: Employee?
+    let employee: [Employee]?
     let zaoch: Bool?
 }
