@@ -7,6 +7,11 @@
 
 import Foundation
 
+protocol SchedulePresenterProtocol: AnyObject {
+    init(view: ScheduleViewProtocol, schedule: Schedule?)
+    func showFacultyName()
+}
+
 class SchedulePresenter: SchedulePresenterProtocol {
     
     let view: ScheduleViewProtocol

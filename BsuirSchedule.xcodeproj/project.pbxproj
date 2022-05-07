@@ -17,9 +17,6 @@
 		9A23029027EE89FB00803D7C /* BsuirScheduleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A23028F27EE89FB00803D7C /* BsuirScheduleUITests.swift */; };
 		9A23029227EE89FC00803D7C /* BsuirScheduleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A23029127EE89FC00803D7C /* BsuirScheduleUITestsLaunchTests.swift */; };
 		9A4D45582814A66600C383C8 /* SchedulePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4D45572814A66600C383C8 /* SchedulePresenter.swift */; };
-		9A4D455B2814A69C00C383C8 /* SchedulePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4D455A2814A69C00C383C8 /* SchedulePresenterProtocol.swift */; };
-		9A4D455D2814A6B200C383C8 /* ScheduleViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4D455C2814A6B200C383C8 /* ScheduleViewProtocol.swift */; };
-		9A4D455F2814AAE600C383C8 /* ScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A4D455E2814AAE600C383C8 /* ScheduleViewController.xib */; };
 		9A4D45622814AB8100C383C8 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4D45612814AB8100C383C8 /* ModuleBuilder.swift */; };
 		9AB80AA32812139F003640C8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB80AA22812139F003640C8 /* NetworkService.swift */; };
 		9AB80AA628121403003640C8 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB80AA528121403003640C8 /* Configs.swift */; };
@@ -63,9 +60,6 @@
 		9A23028F27EE89FB00803D7C /* BsuirScheduleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BsuirScheduleUITests.swift; sourceTree = "<group>"; };
 		9A23029127EE89FC00803D7C /* BsuirScheduleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BsuirScheduleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9A4D45572814A66600C383C8 /* SchedulePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePresenter.swift; sourceTree = "<group>"; };
-		9A4D455A2814A69C00C383C8 /* SchedulePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePresenterProtocol.swift; sourceTree = "<group>"; };
-		9A4D455C2814A6B200C383C8 /* ScheduleViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewProtocol.swift; sourceTree = "<group>"; };
-		9A4D455E2814AAE600C383C8 /* ScheduleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleViewController.xib; sourceTree = "<group>"; };
 		9A4D45612814AB8100C383C8 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		9AB80AA22812139F003640C8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		9AB80AA528121403003640C8 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
@@ -156,7 +150,6 @@
 		9A4D45502814A5EE00C383C8 /* ScheduleModule */ = {
 			isa = PBXGroup;
 			children = (
-				9A4D45592814A68D00C383C8 /* Protocols */,
 				9A4D45562814A64300C383C8 /* Presenter */,
 				9A4D45552814A63E00C383C8 /* View */,
 			);
@@ -194,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				9A23026F27EE89F800803D7C /* ScheduleViewController.swift */,
-				9A4D455E2814AAE600C383C8 /* ScheduleViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,15 +197,6 @@
 				9A4D45572814A66600C383C8 /* SchedulePresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		9A4D45592814A68D00C383C8 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				9A4D455A2814A69C00C383C8 /* SchedulePresenterProtocol.swift */,
-				9A4D455C2814A6B200C383C8 /* ScheduleViewProtocol.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		9A4D45602814AB6D00C383C8 /* Builder */ = {
@@ -360,7 +343,6 @@
 			files = (
 				9A23027B27EE89FB00803D7C /* LaunchScreen.storyboard in Resources */,
 				9A23027827EE89FB00803D7C /* Assets.xcassets in Resources */,
-				9A4D455F2814AAE600C383C8 /* ScheduleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,9 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AB80AA32812139F003640C8 /* NetworkService.swift in Sources */,
-				9A4D455B2814A69C00C383C8 /* SchedulePresenterProtocol.swift in Sources */,
 				9AB80AAD28146CF7003640C8 /* DaySchedule.swift in Sources */,
-				9A4D455D2814A6B200C383C8 /* ScheduleViewProtocol.swift in Sources */,
 				9AB80AB52814718D003640C8 /* EmployeeSchedule.swift in Sources */,
 				9A23027627EE89F800803D7C /* BsuirSchedule.xcdatamodeld in Sources */,
 				9AB80AB128146FF5003640C8 /* Employee.swift in Sources */,

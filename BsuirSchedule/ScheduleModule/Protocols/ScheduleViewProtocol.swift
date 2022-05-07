@@ -7,9 +7,3 @@
 
 import Foundation
 
-protocol ScheduleViewProtocol: AnyObject {
-
-    func succesScheduleLoad(facultyName: String)    
-    func failureScheduleLoad(error: String)
-    
-}
