@@ -10,6 +10,8 @@ import Foundation
 protocol SchedulePresenterProtocol: AnyObject {
     init(view: ScheduleViewProtocol, schedule: Schedule?)
     func showFacultyName()
+    func getPairCount() -> Int?
+    func getPair(withNumber number: Int) -> Pair?
 }
 
 class SchedulePresenter: SchedulePresenterProtocol {
@@ -29,6 +31,14 @@ class SchedulePresenter: SchedulePresenterProtocol {
         }
         
         self.view.succesScheduleLoad(facultyName: facultyName)
+    }
+    
+    func getPairCount() -> Int? {
+        return schedule?.schedules?.first?.schedule?.count
+    }
+    
+    func getPair(withNumber number: Int) -> Pair? {
+        return schedule?.schedules?.first?.schedule?[number]
     }
         
 }
