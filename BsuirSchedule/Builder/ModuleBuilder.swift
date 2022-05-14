@@ -19,6 +19,7 @@ class ModuleBuilder: Builder {
         networkService.getSchedule(forGroup: "051005") { schedule in
             if let schedule = schedule {
                 schedulePresenter.schedule = schedule
+                scheduleView.reloadTableView()
             }
         }
         scheduleView.presenter = schedulePresenter
