@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Configs {
     
@@ -31,6 +32,19 @@ struct Configs {
             return formatter
         }()
         
+    }
+    
+    struct Constants {
+        static let minimumLineSpacing: CGFloat = 10
+        static let rightDistanceToView: CGFloat = 20
+        static let leftDistanceToView: CGFloat = 20
+        static let dateCollectionItemWidth: CGFloat = (UIScreen.main.bounds.width - rightDistanceToView - leftDistanceToView - (minimumLineSpacing / 5)) / 5 * 0.95
+        
+    }
+    
+    struct Constraints {
+        static let regularConstraint: CGFloat = 8
+        static let regularLargeConstraint: CGFloat = 16
     }
     
 }

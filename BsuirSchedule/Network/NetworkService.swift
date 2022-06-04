@@ -21,6 +21,7 @@ class NetworkService {
                 }
                 
                 guard let data = data else { return }
+                print()
                 
                 do {
                     let decoder = JSONDecoder()

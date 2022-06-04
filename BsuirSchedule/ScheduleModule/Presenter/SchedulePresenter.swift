@@ -30,7 +30,7 @@ class SchedulePresenter: SchedulePresenterProtocol {
             return
         }
         
-        self.view.succesScheduleLoad(facultyName: facultyName)
+        self.view.succesScheduleLoad()
     }
     
     func getPairCount() -> Int? {

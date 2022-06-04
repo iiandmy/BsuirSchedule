@@ -8,12 +8,10 @@
 import UIKit
 
 protocol ScheduleViewProtocol: AnyObject {
-    func succesScheduleLoad(facultyName: String)
+    func succesScheduleLoad()
     func failureScheduleLoad(error: String)
     func reloadTableView()
 }
-
-class TableViewCell: UITableViewCell {}
 
 class ScheduleViewController: UIViewController {
 
@@ -21,62 +19,37 @@ class ScheduleViewController: UIViewController {
     var presenter: SchedulePresenterProtocol!
     
     // MARK: Views
-    let tableView: UITableView = {
-        let table = UITableView.init(frame: .zero, style: .plain)
-        return table
-    }()
+    let tableView: UITableView = ScheduleTableView()
+    
+    let dayPicker: UICollectionView = DateCollectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Schedule"
-        
+        view.backgroundColor = .white
+        self.title = "ВТ, 1 сентября"
         makeUI()
-        updateLayout(with: view.frame.size)
+        makeConstraints()
     }
     
     private func makeUI() {
-        registerCell()
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.allowsSelection = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.addSubview(dayPicker)
         view.addSubview(tableView)
     }
     
-    func registerCell() {
-        let scheduleCell = UINib(nibName: "ScheduleCell", bundle: nil)
-        self.tableView.register(scheduleCell, forCellReuseIdentifier: "scheduleCell")
-    }
-    
-    private func updateLayout(with size: CGSize) {
-        tableView.frame = CGRect(origin: .zero, size: size)
-    }
-    
-}
-
-extension ScheduleViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.getPairCount() ?? 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "scheduleCell", for: indexPath) as! ScheduleCell
+    private func makeConstraints() {
+        dayPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        dayPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        dayPicker.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        dayPicker.heightAnchor.constraint(equalToConstant: Configs.Constants.dateCollectionItemWidth + 2 * Configs.Constants.minimumLineSpacing).isActive = true
         
-        guard let pair = presenter.getPair(withNumber: indexPath.row) else {
-            return cell
-        }
-        
-        cell.setLayout(withSubject: pair.subject!, professor: pair.employee?.first?.fio ?? "Failed", startTime: pair.startLessonTime!, endTime: pair.endLessonTime!, auditory: pair.auditory?.first ?? "100", pairType: pair.lessonType!)
-        
-        return cell
+        tableView.topAnchor.constraint(equalTo: dayPicker.bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
-}
-
-extension ScheduleViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        91
-    }
 }
 
 extension ScheduleViewController: ScheduleViewProtocol {
@@ -86,8 +59,8 @@ extension ScheduleViewController: ScheduleViewProtocol {
         }
     }
     
-    func succesScheduleLoad(facultyName: String) {
-        print(facultyName)
+    func succesScheduleLoad() {
+        reloadTableView()
     }
     
     func failureScheduleLoad(error: String) {
