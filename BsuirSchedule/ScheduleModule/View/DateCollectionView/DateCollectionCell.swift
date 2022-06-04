@@ -35,21 +35,21 @@ class DateCollectionCell: UICollectionViewCell {
         backgroundColor = .systemGray6
         layer.cornerRadius = 5
         
-        translatesAutoresizingMaskIntoConstraints = false
-        
         initConstraints()
     }
     
     private func initConstraints() {
         weekDayLabel.translatesAutoresizingMaskIntoConstraints = false
-        weekDayLabel.topAnchor.constraint(equalTo: topAnchor, constant: Configs.Constraints.regularConstraint).isActive = true
-        weekDayLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Configs.Constraints.regularConstraint).isActive = true
-        weekDayLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Configs.Constraints.regularConstraint).isActive = true
-        
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
-        dayLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Configs.Constraints.regularConstraint).isActive = true
-        dayLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Configs.Constraints.regularConstraint).isActive = true
-        dayLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Configs.Constraints.regularConstraint).isActive = true
+        let constraints = [
+            weekDayLabel.topAnchor.constraint(equalTo: topAnchor, constant: Configs.Constraints.regularConstraint),
+            weekDayLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Configs.Constraints.regularConstraint),
+            weekDayLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Configs.Constraints.regularConstraint),
+            dayLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Configs.Constraints.regularConstraint),
+            dayLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Configs.Constraints.regularConstraint),
+            dayLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Configs.Constraints.regularConstraint)
+        ]
+        NSLayoutConstraint.activate(constraints)
     }
     
     required init?(coder: NSCoder) {

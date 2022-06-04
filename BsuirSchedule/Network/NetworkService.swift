@@ -9,7 +9,20 @@ import Foundation
 
 class NetworkService {
     
-    func getSchedule(forGroup group: String, completion: @escaping (Schedule?) -> Void) {
+    func getCurrentWeek(completion: @escaping (Int) -> Void) {
+        guard let requestUrl = URL(string: Configs.Network.bsuirApiGetCurrentWeek) else { return }
+        
+        URLSession.shared.dataTask(with: requestUrl) { data, response, err in
+            if let err = err {
+                print(err)
+            }
+            
+            guard let data = data else { return }
+            completion(Int(String(data: data, encoding: .utf8)!)!)
+        }.resume()
+    }
+    
+    func getSchedule(forGroup group: String, completion: @escaping (Answer?) -> Void) {
         
         guard let requestUrl = URL(string: Configs.Network.bsuirApiGetFullSchedule(group)) else { return }
         
@@ -21,14 +34,13 @@ class NetworkService {
                 }
                 
                 guard let data = data else { return }
-                print()
                 
                 do {
                     let decoder = JSONDecoder()
                     let formatter = Configs.Format.dateFormat
                     decoder.dateDecodingStrategy = .formatted(formatter)
          
-                    let schedule = try decoder.decode(Schedule?.self, from: data)
+                    let schedule = try decoder.decode(Answer?.self, from: data)
                     completion(schedule)
                     
                 } catch {

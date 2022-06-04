@@ -9,7 +9,7 @@ import UIKit
 
 class ScheduleTableView: UITableView {
     
-    var schedule: Schedule!
+    private var schedule: [Pair]!
     
     init() {
         super.init(frame: .zero, style: .plain)
@@ -23,10 +23,12 @@ class ScheduleTableView: UITableView {
     }
     
     func makeSettings() {
+        alwaysBounceVertical = false
         delegate = self
         dataSource = self
         allowsSelection = false
         showsHorizontalScrollIndicator = false
+        showsVerticalScrollIndicator = false
         translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -34,15 +36,21 @@ class ScheduleTableView: UITableView {
         let scheduleCell = UINib(nibName: "ScheduleCell", bundle: nil)
         register(scheduleCell, forCellReuseIdentifier: ScheduleCell.cellIdentifier)
     }
+    
+    func setSchedule(_ pairs: [Pair]) {
+        self.schedule = pairs
+    }
 }
 
 extension ScheduleTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        return schedule?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = dequeueReusableCell(withIdentifier: ScheduleCell.cellIdentifier, for: indexPath)
+        let cell = dequeueReusableCell(withIdentifier: ScheduleCell.cellIdentifier, for: indexPath) as! ScheduleCell
+        
+        cell.setLayout(withPair: schedule[indexPath.row])
         
         return cell
     }

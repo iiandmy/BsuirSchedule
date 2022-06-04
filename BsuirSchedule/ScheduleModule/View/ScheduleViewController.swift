@@ -8,9 +8,14 @@
 import UIKit
 
 protocol ScheduleViewProtocol: AnyObject {
-    func succesScheduleLoad()
+    func succesScheduleLoad(firstDay: Date)
     func failureScheduleLoad(error: String)
+    func reloadTableView(forDay date: Date)
     func reloadTableView()
+}
+
+protocol ScheduleViewDelegate: AnyObject {
+    func choose(day: Date)
 }
 
 class ScheduleViewController: UIViewController {
@@ -19,15 +24,15 @@ class ScheduleViewController: UIViewController {
     var presenter: SchedulePresenterProtocol!
     
     // MARK: Views
-    let tableView: UITableView = ScheduleTableView()
+    private let tableView: ScheduleTableView = ScheduleTableView()
     
-    let dayPicker: UICollectionView = DateCollectionView()
+    private var dayPicker: DateCollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dayPicker = DateCollectionView(viewDelegate: self)
         
         view.backgroundColor = .white
-        self.title = "ВТ, 1 сентября"
         makeUI()
         makeConstraints()
     }
@@ -50,17 +55,36 @@ class ScheduleViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
+    private func setTitle(withDate date: Date) {
+        self.title = "\(date.getWeekDayString()), \(date.getDayNumberString()) \(date.getMonthString())"
+    }
+    
+}
+
+extension ScheduleViewController: ScheduleViewDelegate {
+    func choose(day: Date) {
+        reloadTableView(forDay: day)
+    }
 }
 
 extension ScheduleViewController: ScheduleViewProtocol {
-    func reloadTableView() {
+    func reloadTableView(forDay date: Date) {
         DispatchQueue.main.async {
+            self.setTitle(withDate: date)
+            self.tableView.setSchedule(self.presenter.getSchedule(forDay: date.getWeekDayString()))
             self.tableView.reloadData()
         }
     }
     
-    func succesScheduleLoad() {
-        reloadTableView()
+    func reloadTableView() {
+        DispatchQueue.main.async {
+            self.setTitle(withDate: self.dayPicker.getTodayDate())
+            self.tableView.setSchedule(self.presenter.getSchedule(forDay: self.dayPicker.getTodayDate().getWeekDayString()))
+        }
+    }
+    
+    func succesScheduleLoad(firstDay: Date) {
+        reloadTableView(forDay: firstDay)
     }
     
     func failureScheduleLoad(error: String) {

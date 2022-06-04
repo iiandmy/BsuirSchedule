@@ -67,7 +67,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Игорь Александрович" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yA6-Y8-5WF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Игорь Александрович" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enS-Ab-gbv">
                                 <rect key="frame" x="0.0" y="24" width="149.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -75,8 +75,15 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 подгруппа" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yA6-Y8-5WF" userLabel="SubgroupNum">
+                        <rect key="frame" x="222.5" y="97" width="81.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="yA6-Y8-5WF" secondAttribute="trailing" constant="16" id="42I-cw-YGN"/>
                     <constraint firstItem="gD0-pC-zJ7" firstAttribute="leading" secondItem="HmR-J2-kuJ" secondAttribute="trailing" constant="16" id="JfU-E7-2Me"/>
                     <constraint firstAttribute="trailing" secondItem="iyg-ps-AJ5" secondAttribute="trailing" constant="16" id="Jfg-h1-v13"/>
                     <constraint firstAttribute="bottom" secondItem="HmR-J2-kuJ" secondAttribute="bottom" constant="16" id="JyG-kt-Qd7"/>
@@ -86,6 +93,7 @@
                     <constraint firstItem="iyg-ps-AJ5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="gqq-Y6-Y3p"/>
                     <constraint firstAttribute="bottom" secondItem="gD0-pC-zJ7" secondAttribute="bottom" constant="16" id="lj7-ac-UHn"/>
                     <constraint firstItem="Qe6-YV-nE2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="ohZ-jO-OwK"/>
+                    <constraint firstAttribute="bottom" secondItem="yA6-Y8-5WF" secondAttribute="bottom" constant="16" id="r0S-OC-aDn"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -96,6 +104,7 @@
                 <outlet property="professorSurname" destination="23Z-id-vgh" id="gtz-gw-eLd"/>
                 <outlet property="sideBarIndicator" destination="HmR-J2-kuJ" id="gpF-T0-XkN"/>
                 <outlet property="startTime" destination="I72-as-w7Z" id="b6K-Sa-Dhs"/>
+                <outlet property="subgroupNum" destination="yA6-Y8-5WF" id="Ygi-NX-UxQ"/>
                 <outlet property="subjectName" destination="l1z-gy-kKg" id="bXt-yc-Bk2"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="74.330357142857139"/>

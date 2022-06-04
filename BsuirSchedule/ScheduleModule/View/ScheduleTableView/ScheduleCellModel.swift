@@ -18,6 +18,7 @@ class ScheduleCell: UITableViewCell {
     @IBOutlet weak var startTime: UILabel!
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var auditory: UILabel!
+    @IBOutlet weak var subgroupNum: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,20 +33,23 @@ class ScheduleCell: UITableViewCell {
         self.sideBarIndicator.layer.cornerRadius = 5
     }
     
-    func setLayout(withSubject subject: String, professorName: (first: String, last: String, middle: String), startTime: String, endTime: String, auditory: String, pairType: String) {
-        if subjectName == nil {
-            return
+    func setLayout(withPair pair: Pair?) {
+        guard let pair = pair else { return }
+        guard let professor = pair.employees.first else { return }
+        
+        self.subjectName.text = pair.subject
+        self.professorSurname.text = professor.lastName
+        self.professorFirstMiddleName.text = "\(professor.firstName) \(professor.middleName)"
+        self.startTime.text = pair.startLessonTime
+        self.endTime.text = pair.endLessonTime
+        self.auditory.text = pair.auditories.first ?? ""
+        switch pair.numSubgroup {
+        case 1...2: self.subgroupNum.text = "\(pair.numSubgroup) подгруппа"
+        default: self.subgroupNum.text = ""
         }
         
-        self.subjectName.text = subject
-        self.professorSurname.text = professorName.last
-        self.professorFirstMiddleName.text = "\(professorName.first) \(professorName.middle)"
-        self.startTime.text = startTime
-        self.endTime.text = endTime
-        self.auditory.text = auditory
-        
         let cellColor: UIColor!
-        switch pairType {
+        switch pair.lessonTypeAbbrev {
         case "ЛК": cellColor = .systemBlue
         case "ПЗ": cellColor = .systemYellow
         case "ЛР": cellColor = .systemRed
@@ -54,6 +58,5 @@ class ScheduleCell: UITableViewCell {
         
         self.subjectName.textColor = cellColor
         self.sideBarIndicator.backgroundColor = cellColor
-        
     }
 }

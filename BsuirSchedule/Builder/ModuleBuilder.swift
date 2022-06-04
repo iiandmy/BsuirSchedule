@@ -16,6 +16,9 @@ class ModuleBuilder: Builder {
         let networkService = NetworkService()
         let scheduleView = ScheduleViewController()
         let schedulePresenter = SchedulePresenter(view: scheduleView, schedule: nil)
+        networkService.getCurrentWeek { weekDay in
+            schedulePresenter.currentWeek = Int(weekDay)
+        }
         networkService.getSchedule(forGroup: "051005") { schedule in
             if let schedule = schedule {
                 schedulePresenter.schedule = schedule

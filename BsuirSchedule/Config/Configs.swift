@@ -11,8 +11,8 @@ import UIKit
 struct Configs {
     
     struct Network {
-        
         static let bsuirApiBaseUrl: String = "https://iis.bsuir.by/api/v1/"
+        static let bsuirApiGetCurrentWeek: String = "\(Configs.Network.bsuirApiBaseUrl)schedule/current-week"
         static let bsuirApiGetFullSchedule: (String) -> String = { groupId in
             return "\(Configs.Network.bsuirApiBaseUrl)schedule?studentGroup=\(groupId)"
         }
@@ -36,8 +36,8 @@ struct Configs {
     
     struct Constants {
         static let minimumLineSpacing: CGFloat = 10
-        static let rightDistanceToView: CGFloat = 20
-        static let leftDistanceToView: CGFloat = 20
+        static let rightDistanceToView: CGFloat = 16
+        static let leftDistanceToView: CGFloat = 16
         static let dateCollectionItemWidth: CGFloat = (UIScreen.main.bounds.width - rightDistanceToView - leftDistanceToView - (minimumLineSpacing / 5)) / 5 * 0.95
         
     }
