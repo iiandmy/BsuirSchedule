@@ -56,6 +56,7 @@ struct Configs {
         static let fullGroupImage: UIImage = UIImage(systemName: "person.2", withConfiguration: Configs.ImageConfig.largeSymbols)!
         static let firstSubgroupImage: UIImage = UIImage(systemName: "1.square", withConfiguration: Configs.ImageConfig.extraLargeSymbols)!
         static let secondSubgroupImage: UIImage = UIImage(systemName: "2.square", withConfiguration: Configs.ImageConfig.extraLargeSymbols)!
+        static let scheduleImage: UIImage = UIImage(systemName: "book", withConfiguration: Configs.ImageConfig.largeSymbols)!
     }
     
 }

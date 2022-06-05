@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let searchVC = ModuleBuilder.createSearchModule()
         let searchNav = UINavigationController(rootViewController: searchVC)
         
-        let scheduleTabItem = UITabBarItem(title: "Schedule", image: Configs.Icons.firstSubgroupImage, selectedImage: nil)
+        let scheduleTabItem = UITabBarItem(title: "Schedule", image: Configs.Icons.scheduleImage, selectedImage: nil)
         let searchTabItem = UITabBarItem(title: "Groups", image: Configs.Icons.fullGroupImage, selectedImage: nil)
         
         scheduleNav.tabBarItem = scheduleTabItem
