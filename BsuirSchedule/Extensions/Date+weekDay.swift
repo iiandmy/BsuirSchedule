@@ -33,12 +33,13 @@ extension Date {
     func getWeekNumber(for date: Date, currentNumber: Int) -> Int {
         var res = currentNumber
         var currDate = self
-        let toDate = date
-        while (currDate.getMonth() != toDate.getMonth() &&
-               currDate.getDayNumber() != toDate.getDayNumber()) {
-            
-            if (currDate.getWeekDay() == 1) {
+        while (currDate.getMonth() != date.getMonth() ||
+               currDate.getDayNumber() != date.getDayNumber()) {
+                
+            if (currDate.getWeekDay() == 1 && res != 4) {
                 res += 1
+            } else if (currDate.getWeekDay() == 1){
+                res = 1
             }
             currDate = currDate.getNextDay()
         }

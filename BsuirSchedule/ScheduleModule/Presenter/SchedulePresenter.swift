@@ -8,34 +8,30 @@
 import Foundation
 
 protocol SchedulePresenterProtocol: AnyObject {
-    init(view: ScheduleViewProtocol, schedule: Answer?)
-    func getSchedule(forDay day: String) -> [Pair]
-    func getPairCount() -> Int?
-    func getPair(withNumber number: Int) -> Pair?
+    init(view: ScheduleViewProtocol, schedule: Schedule?)
+    func getSchedule(forDay day: String, inWeek week: Int, forSubgroup subgroup: Int) -> [Pair]
+    func refreshSchedule()
 }
 
 class SchedulePresenter: SchedulePresenterProtocol {
     let view: ScheduleViewProtocol
-    var schedule: Answer?
-    var currentWeek: Int!
+    var schedule: Schedule?
+    var currentWeek: Int?
     
-    required init(view: ScheduleViewProtocol, schedule: Answer?) {
+    required init(view: ScheduleViewProtocol, schedule: Schedule?) {
         self.view = view
-        self.schedule = schedule
+        refreshSchedule()
     }
     
-    func getSchedule(forDay day: String) -> [Pair] {
-        return (schedule?.schedules.getSchedule(forDay: day))!.filter{ pair in
-            pair.weekNumber.contains(currentWeek)
-        }
+    func refreshSchedule() {
+        self.schedule = ScheduleRepo.shared.schedule
+        self.currentWeek = ScheduleRepo.shared.currentWeek
     }
     
-    func getPairCount() -> Int? {
-        return schedule?.schedules.monday.count
+    func getSchedule(forDay day: String, inWeek week: Int, forSubgroup subgroup: Int) -> [Pair] {
+        return schedule?.getSchedule(forDay: day).filter { pair in
+            pair.weekNumber.contains(week) && (subgroup == 0 ? true : pair.numSubgroup == 0 || pair.numSubgroup == subgroup)
+        } ?? [Pair]()
     }
-    
-    func getPair(withNumber number: Int) -> Pair? {
-        return schedule?.schedules.monday[number]
-    }
-        
+       
 }

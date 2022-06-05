@@ -28,7 +28,6 @@ class NetworkService {
         
         DispatchQueue.main.async {
             URLSession.shared.dataTask(with: requestUrl) { data, response, err in
-                
                 if let err = err {
                     print(err)
                 }
@@ -50,6 +49,31 @@ class NetworkService {
             }.resume()
         }
         
+    }
+    
+    func getGroups(completion: @escaping ([Group]?) -> Void) {
+        guard let requestUrl = URL(string: Configs.Network.bsuirApiGetGroups) else { return }
+        
+        DispatchQueue.main.async {
+            URLSession.shared.dataTask(with: requestUrl) { data, response, err in
+                if let err = err {
+                    print(err)
+                }
+                
+                guard let data = data else { return }
+                
+                do {
+                    let decoder = JSONDecoder()
+                    
+                    let groups = try decoder.decode([Group]?.self, from: data)
+                    completion(groups)
+                    
+                } catch {
+                    print(error)
+                }
+                
+            }.resume()
+        }
     }
     
 }

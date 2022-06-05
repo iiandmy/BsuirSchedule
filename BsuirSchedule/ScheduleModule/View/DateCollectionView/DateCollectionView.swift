@@ -12,6 +12,7 @@ class DateCollectionView: UICollectionView {
     private let daysCount = 14
     private let calendar = Calendar.current
     private var dates = [Date]()
+    private var choosenDate: Date!
     weak var viewDelegate: ScheduleViewDelegate!
     
     init(viewDelegate: ScheduleViewDelegate) {
@@ -44,10 +45,11 @@ class DateCollectionView: UICollectionView {
             dates.append(date)
             date = date.getNextDay()
         }
+        choosenDate = dates[0]
     }
     
-    func getTodayDate() -> Date {
-        return dates[0]
+    func getChoosenDate() -> Date {
+        return choosenDate
     }
 
 }
@@ -77,6 +79,7 @@ extension DateCollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        choosenDate = dates[indexPath.row]
         viewDelegate.choose(day: dates[indexPath.row])
     }
 }

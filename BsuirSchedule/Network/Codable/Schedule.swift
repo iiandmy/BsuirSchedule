@@ -6,21 +6,21 @@
 //
 
 struct Schedule: Codable {
-    let saturday: [Pair]
-    let thursday: [Pair]
-    let friday: [Pair]
-    let monday: [Pair]
-    let tuesday: [Pair]
-    let wednesday: [Pair]
+    let saturday: [Pair]?
+    let thursday: [Pair]?
+    let friday: [Pair]?
+    let monday: [Pair]?
+    let tuesday: [Pair]?
+    let wednesday: [Pair]?
     
     func getSchedule(forDay day: String) -> [Pair] {
         switch day {
-        case "ПН": return monday
-        case "ВТ": return tuesday
-        case "СР": return wednesday
-        case "ЧТ": return thursday
-        case "ПТ": return friday
-        case "СБ": return saturday
+        case "ПН": return monday ?? [Pair]()
+        case "ВТ": return tuesday ?? [Pair]()
+        case "СР": return wednesday ?? [Pair]()
+        case "ЧТ": return thursday ?? [Pair]()
+        case "ПТ": return friday ?? [Pair]()
+        case "СБ": return saturday ?? [Pair]()
         default: return [Pair]()
         }
     }

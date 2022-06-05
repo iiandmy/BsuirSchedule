@@ -13,10 +13,10 @@ struct Configs {
     struct Network {
         static let bsuirApiBaseUrl: String = "https://iis.bsuir.by/api/v1/"
         static let bsuirApiGetCurrentWeek: String = "\(Configs.Network.bsuirApiBaseUrl)schedule/current-week"
+        static let bsuirApiGetGroups: String = "\(Configs.Network.bsuirApiBaseUrl)student-groups"
         static let bsuirApiGetFullSchedule: (String) -> String = { groupId in
             return "\(Configs.Network.bsuirApiBaseUrl)schedule?studentGroup=\(groupId)"
         }
-        
     }
     
     struct Format {
@@ -45,6 +45,17 @@ struct Configs {
     struct Constraints {
         static let regularConstraint: CGFloat = 8
         static let regularLargeConstraint: CGFloat = 16
+    }
+    
+    struct ImageConfig {
+        static let largeSymbols: UIImage.Configuration = UIImage.SymbolConfiguration(scale: .large)
+        static let extraLargeSymbols: UIImage.Configuration = UIImage.SymbolConfiguration(pointSize: 26)
+    }
+    
+    struct Icons {
+        static let fullGroupImage: UIImage = UIImage(systemName: "person.2", withConfiguration: Configs.ImageConfig.largeSymbols)!
+        static let firstSubgroupImage: UIImage = UIImage(systemName: "1.square", withConfiguration: Configs.ImageConfig.extraLargeSymbols)!
+        static let secondSubgroupImage: UIImage = UIImage(systemName: "2.square", withConfiguration: Configs.ImageConfig.extraLargeSymbols)!
     }
     
 }

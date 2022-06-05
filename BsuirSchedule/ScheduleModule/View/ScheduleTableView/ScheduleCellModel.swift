@@ -35,11 +35,11 @@ class ScheduleCell: UITableViewCell {
     
     func setLayout(withPair pair: Pair?) {
         guard let pair = pair else { return }
-        guard let professor = pair.employees.first else { return }
+        let professor = pair.employees.first ?? .none
         
         self.subjectName.text = pair.subject
-        self.professorSurname.text = professor.lastName
-        self.professorFirstMiddleName.text = "\(professor.firstName) \(professor.middleName)"
+        self.professorSurname.text = professor?.lastName ?? ""
+        self.professorFirstMiddleName.text = "\(professor?.firstName ?? "") \(professor?.middleName ?? "")"
         self.startTime.text = pair.startLessonTime
         self.endTime.text = pair.endLessonTime
         self.auditory.text = pair.auditories.first ?? ""

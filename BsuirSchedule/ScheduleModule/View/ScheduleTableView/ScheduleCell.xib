@@ -100,7 +100,7 @@
             <connections>
                 <outlet property="auditory" destination="QAE-ng-iDe" id="eVa-Mm-5Rm"/>
                 <outlet property="endTime" destination="Sb5-iZ-LhC" id="1cj-hJ-whB"/>
-                <outlet property="professorFirstMiddleName" destination="yA6-Y8-5WF" id="SOP-xr-pe4"/>
+                <outlet property="professorFirstMiddleName" destination="enS-Ab-gbv" id="bcW-jY-aM4"/>
                 <outlet property="professorSurname" destination="23Z-id-vgh" id="gtz-gw-eLd"/>
                 <outlet property="sideBarIndicator" destination="HmR-J2-kuJ" id="gpF-T0-XkN"/>
                 <outlet property="startTime" destination="I72-as-w7Z" id="b6K-Sa-Dhs"/>

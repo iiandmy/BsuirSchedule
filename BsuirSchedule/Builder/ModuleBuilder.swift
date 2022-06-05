@@ -9,23 +9,28 @@ import UIKit
 
 protocol Builder {
     static func createScheduleModule() -> UIViewController
+    static func createSearchModule() -> UIViewController
 }
 
 class ModuleBuilder: Builder {
     static func createScheduleModule() -> UIViewController {
-        let networkService = NetworkService()
         let scheduleView = ScheduleViewController()
         let schedulePresenter = SchedulePresenter(view: scheduleView, schedule: nil)
-        networkService.getCurrentWeek { weekDay in
-            schedulePresenter.currentWeek = Int(weekDay)
-        }
-        networkService.getSchedule(forGroup: "051005") { schedule in
-            if let schedule = schedule {
-                schedulePresenter.schedule = schedule
-                scheduleView.reloadTableView()
-            }
-        }
         scheduleView.presenter = schedulePresenter
         return scheduleView
+    }
+    
+    static func createSearchModule() -> UIViewController {
+        let networkService = NetworkService()
+        let searchView = SearchViewController()
+        let searchPresenter = SearchPresenter()
+        networkService.getGroups { groups in
+            if let groups = groups {
+                searchPresenter.groups = groups
+            }
+        }
+        searchView.presenter = searchPresenter
+        searchPresenter.view = searchView
+        return searchView
     }
 }

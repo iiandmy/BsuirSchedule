@@ -19,8 +19,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         let scheduleVC = ModuleBuilder.createScheduleModule()
-        let navBar = UINavigationController(rootViewController: scheduleVC)
-        window?.rootViewController = navBar
+        let scheduleNav = UINavigationController(rootViewController: scheduleVC)
+        let searchVC = ModuleBuilder.createSearchModule()
+        let searchNav = UINavigationController(rootViewController: searchVC)
+        
+        let scheduleTabItem = UITabBarItem(title: "Schedule", image: Configs.Icons.firstSubgroupImage, selectedImage: nil)
+        let searchTabItem = UITabBarItem(title: "Groups", image: Configs.Icons.fullGroupImage, selectedImage: nil)
+        
+        scheduleNav.tabBarItem = scheduleTabItem
+        searchNav.tabBarItem = searchTabItem
+        
+        let tabController = UITabBarController()
+        tabController.setViewControllers([scheduleNav, searchNav], animated: true)
+        
+        window?.rootViewController = tabController
         window?.makeKeyAndVisible()
         
     }

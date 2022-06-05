@@ -13,22 +13,22 @@ class ScheduleTableView: UITableView {
     
     init() {
         super.init(frame: .zero, style: .plain)
-        registerCell()
         makeSettings()
+        registerCell()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         makeSettings()
+        registerCell()
     }
     
     func makeSettings() {
-        alwaysBounceVertical = false
         delegate = self
         dataSource = self
         allowsSelection = false
-        showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
+        showsHorizontalScrollIndicator = false
         translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -39,6 +39,7 @@ class ScheduleTableView: UITableView {
     
     func setSchedule(_ pairs: [Pair]) {
         self.schedule = pairs
+        self.reloadData()
     }
 }
 
