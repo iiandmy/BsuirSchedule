@@ -9,5 +9,5 @@ import Foundation
 
 struct Answer: Codable {
     let studentGroupDto: Group
-    let schedules: Schedule
+    let schedules: Schedule?
 }
